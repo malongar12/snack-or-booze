@@ -1,0 +1,64 @@
+body{
+  overflow: hidden;
+}
+
+main {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15vh;
+  height: calc(100vh - 56px); /* router view - navbar height */
+  overflow: scroll;
+  color: white;
+}
+
+.card {
+  border-radius: 0;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 15vh;
+}
+
+
+.add_item h3{
+  color: black;
+  text-align: center;
+}
+
+.add_item{
+ display: flex;
+ width: 400px;
+ height: 400px;
+ margin-top: 50px;
+ justify-content: center;
+ align-items: center;
+ background-color: grey;
+  border: 2px solid black;
+
+}
+
+
+label{
+  display: block;
+  color: black;
+  font-size: larger;
+}
+
+
+.input-field input{
+  padding: 0 60px 0 0;
+}
+
+
+
+.add_item button{
+ 
+  margin-top: 20px;
+  margin-left: 30%;
+  font-size: larger;
+  background-color: lightgray;
+  padding: 5px 30px 5px 30px;
+}
+
+
