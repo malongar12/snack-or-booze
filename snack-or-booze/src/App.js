@@ -35,8 +35,7 @@ function App() {
   if (isLoading) {
     return <p>Loading &hellip;</p>;
   }
-
-
+  
   return (
     <div className="App">
       <BrowserRouter>
