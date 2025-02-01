@@ -1,39 +1,41 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { BrowserRouter, useParams, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./Home";
 import SnackOrBoozeApi from "./Api";
 import NavBar from "./NavBar";
-import { Route, Switch } from "react-router-dom";
 import Menu from "./FoodMenu";
 import Snack from "./FoodItem";
 import AddItem from "./Add";
+import { myContext } from "./context/contextProvider";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [snacks, setSnacks] = useState([]);
-  const [drinks, setDrinks] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const {setDrinks, drinks, snacks, setSnacks} = useContext(myContext)
  
-  useEffect(() => {
-    async function getSnacks() {
-      let snacks = await SnackOrBoozeApi.getSnacks();
-      setSnacks(snacks);
-      setIsLoading(false);
-    }
-    getSnacks();
-  }, []);
+ useEffect(()=> {
 
-  useEffect(() => {
-    const drinks = async () => {
-      let result = await SnackOrBoozeApi.getDrinks();
-      setDrinks(result);
-    };
-    drinks();
-  }, []);
+
+  const fetchSnacksAndDrinks = async ()=>{
+    setIsLoading(true)
+   try {
+    
+    const snacks = await SnackOrBoozeApi.getSnacks();
+    const drinks = await SnackOrBoozeApi.getDrinks();
+    setSnacks(snacks)
+    setDrinks(drinks)
+   } catch (error) {
+    console.log(error)
+   }finally{
+    setIsLoading(false)
+   }
+  };
+  fetchSnacksAndDrinks();
+ },[])
 
  
   if (isLoading) {
-    return <p>Loading &hellip;</p>;
+    return <p>Loading....</p>;
   }
   
   return (
@@ -41,37 +43,35 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <main>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
+        <Routes>
+            <Route exact path="/" element={<Home   drinks={drinks} snacks={snacks}/>} />
+             
 
-            <Route path="/add/item" cantFind="/add">
-              <AddItem />
-            </Route>
+            <Route path="/add/item" cantFind="/add" element={<AddItem/>}  />
+            
 
-            <Route exact path="/snacks">
-              <Menu items={snacks} title="Snacks" />
-            </Route>
+            <Route exact path="/snacks"  element={<Menu items={snacks} title="Snacks" />}  />
+              
+  
 
-            <Route path="/drinks">
-              <Menu items={drinks} title="Drinks" />
-            </Route>
+            <Route path="/drinks" element={<Menu items={drinks} title="Drinks" />}/>
+              
+      
 
 
-            <Route exact path="/item/:id">
-            <Snack items={[...drinks, ...snacks]} />
+            <Route exact path="/item/:id"  element={  <Snack items={[...drinks, ...snacks]} />} />
+          
 
-            </Route>
+       
 
             
 
 
 
-            <Route>
-              <p>Hmmm. I can't seem to find what you want.</p>
-            </Route>
-          </Switch>
+            <Route path="/*" element ={ <p>Hmmm. I can't seem to find what you want.</p>} />
+             
+     
+          </Routes>
         </main>
       </BrowserRouter>
     </div>

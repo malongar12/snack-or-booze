@@ -17,7 +17,7 @@ class SnackOrBoozeApi {
   }
 
 
-  static getDrinks = async (data)=> {
+  static getDrinks = async ()=> {
 
     const result = await axios.get(`${BASE_API_URL}/drinks`)
 

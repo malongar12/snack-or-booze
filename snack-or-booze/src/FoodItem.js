@@ -1,16 +1,16 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 
 function FoodItem({items, cantFind }) {
-
+let navigate = useNavigate()
   const { id } = useParams();
 
   let snack = items.find(snack => snack.id === id);
   
-  if (!snack) return <Redirect to={cantFind} />;
+  if (!snack) return navigate("/");
+  //<Redirect to={cantFind} />;
 
   
   return (

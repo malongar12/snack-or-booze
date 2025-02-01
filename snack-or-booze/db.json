@@ -40,6 +40,13 @@
       "description": "Root beer has been drunk in the United States since at least the eighteenth century.",
       "recipe": "idk",
       "serve": "1 per serving"
+    },
+    {
+      "id": "Fanta",
+      "name": "Fanta",
+      "description": "one of the best drinks out there",
+      "recipe": "idk",
+      "serve": "1 per serving"
     }
   ],
   "snacks": [
@@ -63,6 +70,20 @@
       "description": "Tart and delicious.",
       "recipe": "Mix arugula, toasted walnuts, and thinly-sliced Parmesan cheese. Dress with lemon and olive oil.",
       "serve": "Place on tiny, precious little plates."
+    },
+    {
+      "id": "oreo",
+      "name": "oreo",
+      "description": "black and white",
+      "recipe": "idk",
+      "serve": "1 per serving"
+    },
+    {
+      "id": "cookies",
+      "name": "cookies",
+      "description": "very good",
+      "recipe": "idk",
+      "serve": "1 per serving"
     }
   ]
 }

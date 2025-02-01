@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardBody, CardTitle } from "reactstrap";
 
-function Home() {
+function Home({snacks, drinks}) {
   
   return (
     <section className="col-md-8">
@@ -12,8 +12,16 @@ function Home() {
               Welcome to Silicon Valley's premier dive cafe!
             </h3>
           </CardTitle>
-          <p>Snacks: </p>
-          <p>Drinks:</p>
+
+          {snacks && drinks ? (
+          <>
+            <p>Snacks: {snacks.length}</p>
+            <p>Drinks: {drinks.length}</p>
+          </>
+        ) : (
+          <p>We don't have any snacks or drinks available right now.</p>
+        )}
+          
         </CardBody>
       </Card>
     </section>
